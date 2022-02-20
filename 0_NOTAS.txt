@@ -4,10 +4,25 @@
 
 DUDAS --------------------------------------------------------------------------------------------
 - Declaración de parametros se puede hacer de forma progresiva y no al principio?
-- 
+- argv a qué hace referencia?
+- Linux?
 - 
 - 
 - 
 - 
 
 TEST CASES ---------------------------------------------------------------------------------------
+mycat
+- argv < 2 --> error -1
+- argv > 2 but no files --> error return -1
+- argv > 2 & files --> print in console
+- the file does not exist
+- file bigger than buffer (?)
+
+myls
+-
+-
+
+mysize
+-
+-
