@@ -34,16 +34,14 @@ int main(int argc, char *argv[]) {
     
     // The bytes to read are stored in the declared variable. The system call 'read' is used.
     nread = read(descriptor, buffer, BUFFER_SIZE);
-    // If the file is not empy, a loop is entered. If not, jump to the end. 
-    if (nread != 0) {
-        // Until the buffer is empty, the information of the file is written.
-        do {
-            write(STDOUT_FILENO, buffer, nread);
-            nread = read(descriptor, buffer, BUFFER_SIZE);
-        } while(nread != 0);
-    }
 
-    // Closes and returns 0.
+    // Until the buffer is empty, the information of the file is written. The system calls 'write' and 'read' are used.
+    do {
+        write(STDOUT_FILENO, buffer, nread);
+        nread = read(descriptor, buffer, BUFFER_SIZE);
+    } while(nread != 0);
+
+    // Closes and returns 0. The system call 'close' is used.
     close(descriptor);                                              
     return 0;
 }
