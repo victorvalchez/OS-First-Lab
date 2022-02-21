@@ -10,12 +10,11 @@
 int main(int argc, char *argv[]) {
     
     // Declaration of the variables the function will use.
-    // Declaration of the file descriptor.
-    int descriptor;
-    // Declaration of the buffer --> Vector with length equal to the BUFFER_SIZE.                                             
-    char buffer[BUFFER_SIZE];
-    // Declaration of the variable that stores the number of bytes to read.
-    int nread;
+    int descriptor;             // Declaration of the file descriptor.
+                                                 
+    char buffer[BUFFER_SIZE];   // Declaration of the buffer --> Vector with length equal to the BUFFER_SIZE.
+    
+    int nread;                  // Declaration of the variable that stores the number of bytes to read.
   
 	// If the number of arguments is less than two we print the error and return.
 	if(argc < 2) {
@@ -38,7 +37,7 @@ int main(int argc, char *argv[]) {
     // Until the buffer is empty, the information of the file is written. The system calls 'write' and 'read' are used.
     do {
         write(STDOUT_FILENO, buffer, nread);
-        nread = read(descriptor, buffer, BUFFER_SIZE);
+        nread = read(descriptor, buffer, BUFFER_SIZE);      // Variable nread stores the bytes effectively read
     } while(nread != 0);
 
     // Closes and returns 0. The system call 'close' is used.
