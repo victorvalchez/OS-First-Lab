@@ -8,11 +8,11 @@
 
 int main(int argc, char *argv[]){
 	DIR *direction;
-	struct dirent *read;			// Read is the pointer of the next file in the directory
+	struct dirent *read;			    // Read is the pointer of the next file in the directory
 
 	// If you dont pass a directory, it does the ls function of the current directory
     
-	if (argc<2) {		//If it only recieves an argument (name of the program) it takes the current directory
+	if (argc < 2) {		            //If it only recieves an argument (name of the program) it takes the current directory
 		char dirActual[PATH_MAX];	//Create the buffer with the maximum size
 		getcwd(dirActual, PATH_MAX); // We use getcwd with the buffer and the maximum path
 		direction = opendir(dirActual); // Open the current directory
@@ -30,7 +30,7 @@ int main(int argc, char *argv[]){
     //Make a loop to read all files and print them until you get NULL meaning all have been read
     else {
 			read = readdir(direction);
-			while(read != NULL){
+			while(read != NULL) {
 			printf("%s\n", read -> d_name);
 			read = readdir(direction);
 			}
