@@ -6,8 +6,8 @@ DUDAS --------------------------------------------------------------------------
 - Declaración de parametros se puede hacer de forma progresiva y no al principio?
 - argv a qué hace referencia?
 - Linux?
-- 
-- 
+- En el report --> copiamos el codigo o solo comentamos como funciona?
+- En caso de error, se devuelve sólo -1 o con cada error se devuelve un valor distinto para diferenciarlos (-1, -2, ...)?
 - 
 - 
 
