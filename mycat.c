@@ -33,23 +33,18 @@ int main(int argc, char *argv[]) {
     
     // The bytes to read are stored in the declared variable. The system call 'read' is used.
     nread = read(descriptor, buffer, BUFFER_SIZE);
-
-    
-    /*
-    CHECK DE nread < 0 PARA EVITAR ERRORES???
     
     if(nread = read(descriptor, buffer, BUFFER_SIZE) < 0) {
             printf("Error while reading");
             return(-1);
-        } 
-    */
+        }
 
-    
     // Until the buffer is empty, the information of the file is written. The system calls 'write' and 'read' are used.
     do {
         write(STDOUT_FILENO, buffer, nread);
         nread = read(descriptor, buffer, BUFFER_SIZE);      // Variable nread stores the bytes effectively read
     } while(nread != 0);
+    
 
     // Closes and returns 0. The system call 'close' is used.
     close(descriptor);                                              
