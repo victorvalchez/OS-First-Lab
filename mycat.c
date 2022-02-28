@@ -26,14 +26,13 @@ int main(int argc, char *argv[]) {
     // Open the file, save its descriptor and check it to see if there is an error. The system call 'open' is used.
     descriptor = open(argv[1], O_RDONLY);
     // If descriptor is equal to -1 there is no such file (error), so the function will end.                       
-    if (descriptor < 0) {                                           
+    if(descriptor < 0) {                                           
         printf("The file does not exist. \n");                       
         return(-1);
     }
     
-    // The bytes to read are stored in the declared variable. The system call 'read' is used.
-    nread = read(descriptor, buffer, BUFFER_SIZE);
-    
+    // The number of bytes to read are stored in the declared variable. The system call 'read' is used.  
+    // If the number of bytes is -1, there is an error while reading.
     if(nread = read(descriptor, buffer, BUFFER_SIZE) < 0) {
             printf("Error while reading");
             return(-1);

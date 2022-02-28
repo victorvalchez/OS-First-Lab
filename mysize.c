@@ -5,7 +5,9 @@
 #include <dirent.h>
 #include <unistd.h>
 
+// BORRAR DESPUÉS --> LINUX INCLUYE LA CONSTANTE POR DEFECTO.
 #define PATH_MAX 32768
+
 
 int main(int argc, char *argv[]){
     DIR *direction;
