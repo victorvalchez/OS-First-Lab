@@ -1,40 +1,61 @@
-#include <stdio.h>
-#include <sys/types.h>
+#include <stdio.h>            // Header file for system call printf.
+#include <sys/types.h>	      // Header file for system call fstat.
 #include <sys/stat.h>
-#include <fcntl.h>
-#include <dirent.h>
+#include <fcntl.h>	          // Header file for system call fcntl.
+#include <dirent.h> 	      // Header file for system call opendir, closedir, readdir...
 #include <unistd.h>
 
-// BORRAR DESPUÉS --> LINUX INCLUYE LA CONSTANTE POR DEFECTO.
-#define PATH_MAX 32768
 
 
 int main(int argc, char *argv[]){
+
+    struct dirent *read;
+    int descriptor;
     DIR *direction;
-	struct dirent *read;
-	int descriptor;
-    char currentDir[PATH_MAX];                                             // Create buffer.
-	getcwd(currentDir, PATH_MAX);                                          // Get the current path in currentDir.
-	direction = opendir(currentDir);                                       // Open the directory.
-    
-	if(direction == NULL) {                                                // If the direction is NULL the directory has not been opened.
-		printf("If direction is NULL, the directory could not be opened");
+    // Create buffer.
+    char buff_dir[PATH_MAX];
+
+    // Get the current path in buff_dir.
+    getcwd(buff_dir, PATH_MAX);
+    // Open the directory.
+	direction = opendir(buff_dir);
+
+    // If the direction is NULL the directory has not been opened.
+	if(direction == NULL) {
+		printf("Could not open the directory \n");
 		return -1;
 	}
-    else {
-		read = readdir (direction);                                         // It reads the files of the directory.
-		while(read != NULL) {                                               // While a file is read, the loop continues.
-			long size = 0;
-            if(read -> d_type == DT_REG) {                                  // If the file is a regular file print its name and size.
-                                                                            // Las position of the same size and that prints the name and size of the file.
-                descriptor = open(read -> d_name,O_RDWR);   
-                size = lseek(descriptor, 0L, SEEK_END);
-                printf("%s\t%ld\n", read -> d_name, size);  
-                close(descriptor);                                          // Close file.
-            } 
-			read = readdir (direction);
-		}
-	}
-	closedir(direction);                                                     // Close the directory when finished.
-	return 0;
+
+    // It reads the files of the directory.
+    read = readdir(direction);
+    // While a file is read from the directory, the loop continues.
+    while(read != NULL) {
+        // Declaration of a variable to store the offset returned by lseek.
+        int size = 0;
+        // If the file is a regular file print its name and size.
+        if(read -> d_type == DT_REG) {
+            descriptor = open(read -> d_name, O_RDONLY);
+            size = lseek(descriptor, 0, SEEK_END);
+            // The name and size are printed separated by four single spaces.
+            printf("%s    %d\n", read -> d_name, size);  
+
+            // Check for errors while closing the directory.
+        	if ((close(descriptor)) < 0) {
+                printf("Error while closing the descriptor.");
+                return -1;
+            }
+        } 
+        // It continues reading the files of the directory.
+        read = readdir(direction);
+    }
+	
+	// Check for errors while closing the directory.
+	if ((closedir(direction)) < 0) {
+        printf("Error while closing the directory.");
+        return -1;
+    }
+
+    // Stop program successfully.
+    return 0;
+    
 }
