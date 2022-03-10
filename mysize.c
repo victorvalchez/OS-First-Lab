@@ -15,6 +15,11 @@ int main(int argc, char *argv[]){
     // Create buffer.
     char buff_dir[PATH_MAX];
 
+    if (argc >= 2) {
+        printf("Too many arguments. \n");
+        return -1;
+    }
+
     // Get the current path in buff_dir.
     getcwd(buff_dir, PATH_MAX);
     // Open the directory.
@@ -22,7 +27,7 @@ int main(int argc, char *argv[]){
 
     // If the direction is NULL the directory has not been opened.
 	if(direction == NULL) {
-		printf("Could not open the directory \n");
+		printf("Could not open the directory. \n");
 		return -1;
 	}
 
@@ -41,7 +46,7 @@ int main(int argc, char *argv[]){
 
             // Check for errors while closing the directory.
         	if ((close(descriptor)) < 0) {
-                printf("Error while closing the descriptor.");
+                printf("Error while closing the descriptor. \n");
                 return -1;
             }
         } 
@@ -51,7 +56,7 @@ int main(int argc, char *argv[]){
 	
 	// Check for errors while closing the directory.
 	if ((closedir(direction)) < 0) {
-        printf("Error while closing the directory.");
+        printf("Error while closing the directory. \n");
         return -1;
     }
 
