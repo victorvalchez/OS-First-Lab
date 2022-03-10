@@ -41,7 +41,7 @@ int main(int argc, char *argv[]){
 
     // Check for errors while closing the directory.
 	if ((closedir(direction)) < 0) {
-        printf("Error while closing the directory.");
+        printf("Error while closing the directory. \n");
         return -1;
     }
 

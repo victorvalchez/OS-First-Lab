@@ -42,11 +42,11 @@ int main(int argc, char *argv[]) {
         if (write(STDOUT_FILENO, buffer, nread) < nread) {
             // Check if there is an error while closing the descriptor. System call 'close' is used.
 			if (close(descriptor) < 0) {
-                printf("Error while closing the descriptor.");
+                printf("Error while closing the descriptor. \n");
                 // Stop program.
                 return -1;
             }
-            printf("Error while writing.");
+            printf("Error while writing. \n");
 			 // Stop program.
             return -1;
 		}
@@ -54,10 +54,10 @@ int main(int argc, char *argv[]) {
 
     // Check if there is an error while reading from the file.
     if (nread < 0) {
-        printf("Error while reading.");
+        printf("Error while reading. \n");
         // Check if there is an error while closing the descriptor. System call 'close' is used.
         if (close(descriptor) < 0) {
-            printf("Error while closing the descriptor.");
+            printf("Error while closing the descriptor. \n");
             // Stop program.
             return -1;
         }
@@ -65,7 +65,7 @@ int main(int argc, char *argv[]) {
 
     // Check if there is an error while closing the descriptor. System call 'close' is used.
 	if (close(descriptor) < 0) {
-        printf("Error while closing the descriptor.");
+        printf("Error while closing the descriptor. \n");
         // Stop program.  
         return -1;
     }
