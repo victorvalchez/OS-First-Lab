@@ -45,6 +45,10 @@ int main(int argc, char *argv[]){
                 // Stop program.
                 return -1;
             size = lseek(descriptor, 0, SEEK_END);
+            if (size < 0) {                                           
+                printf("Error while obtaining size. \n");
+                // Stop program.
+                return -1;
             // The name and size are printed separated by four single spaces.
             printf("%s    %d\n", read -> d_name, size);  
 
