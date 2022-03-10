@@ -40,6 +40,10 @@ int main(int argc, char *argv[]){
         // If the file is a regular file print its name and size.
         if(read -> d_type == DT_REG) {
             descriptor = open(read -> d_name, O_RDONLY);
+            if (descriptor < 0) {                                           
+                printf("The file could not be opened. \n");
+                // Stop program.
+                return -1;
             size = lseek(descriptor, 0, SEEK_END);
             // The name and size are printed separated by four single spaces.
             printf("%s    %d\n", read -> d_name, size);  
