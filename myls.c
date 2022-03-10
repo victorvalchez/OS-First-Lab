@@ -22,7 +22,7 @@ int main(int argc, char *argv[]){
         // Open the current directory.
 		direction = opendir(buff_dir);
 	}
-    //If it receives more than an argument, it takes the first argument.
+    //If it receives more than an argument, it takes just the first argument.
 	else {
         //Open the directory of the passed parameter.
 		direction = opendir(argv[1]);

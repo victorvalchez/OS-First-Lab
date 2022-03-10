@@ -9,6 +9,7 @@
 
 int main(int argc, char *argv[]){
 
+    // Declaration of the variables that the function will use.
     struct dirent *read;
     int descriptor;
     DIR *direction;
