@@ -4,7 +4,7 @@
 #include <dirent.h>
 #include <string.h>                
 
-
+#define PATH_MAX 1024 // <--- Eliminar para Linux/Unix
 
 int main(int argc, char *argv[]){
     
@@ -38,6 +38,8 @@ int main(int argc, char *argv[]){
     while ((read = readdir(direction)) != NULL) {
         printf("%s\n", read -> d_name);
     }
+
+    // rewinddir(direction); <--- Con esto devolvemos el puntero del directory al primer archivo
 
     // Check for errors while closing the directory.
 	if ((closedir(direction)) < 0) {
